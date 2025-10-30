@@ -1,43 +1,97 @@
-# Safe Remote Demo
+# 🛡️ Safe Remote Demo
 
-A simple **Client–Server educational project** built in **C++ (Client)** and **Python (Server)**.  
-The goal is to understand how network communication works — how a client sends commands to a server and receives responses — **in a safe and local environment** (between your own devices only).
-
----
-
-## ⚙️ Project Structure
-
-
-safe-remote-demo/
-│
-├── cstop-client/ # C++ Client project (Visual Studio)
-│ ├── main.cpp
-│ ├── client.cpp
-│ └── client.h
-│
-└── server/ # Python Server (macOS)
+A lightweight and secure **remote command execution system** built with Python.  
+It includes a **server** that listens for authenticated clients and a **client** that sends commands safely to be executed inside a sandboxed environment.
 
 ---
 
-## 🚀 How It Works
+## 🚀 Features
 
-1. **Server (Python)**  
-   - Runs on macOS.  
-   - Listens for incoming connections on a specific port.  
-   - Authenticates clients using a secret token.  
-   - Safely handles received commands (only within a local sandbox directory).
-
-2. **Client (C++)**  
-   - Runs on Windows (e.g. inside Parallels).  
-   - Connects to the server via IP address and port.  
-   - Sends commands entered by the user to the server.  
-   - Displays the server’s response in the console.
+- 🔐 **Authentication Token** — only trusted clients can connect.  
+- 🧱 **Sandboxed Execution** — commands are executed in a restricted folder.  
+- 🧾 **Logging System** — all actions are logged to `server.log`.  
+- ⚡ **Multi-client Support** — multiple clients can connect at once.  
+- 💻 **Cross-platform** — works on macOS, Linux, and Windows.
 
 ---
 
-## 🧩 How to Run
+## 🗂️ Project Structure
+safe-remote-demo/ server/server.py
+safe-remote-demo/cstop-client/cstop-client.sln # C# client solution (optional)
 
-### 1️⃣ Start the Server (on macOS)
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the Repository
 ```bash
-cd ~/Desktop/safe-remote-demo/server
+git clone https://github.com/yourusername/safe-remote-demo.git
+cd safe-remote-demo
+
+
+2️⃣ Create a Sandbox Folder
+mkdir ~/sandbox
+3️⃣ Start the Server
+cd server
 python3 server.py --port 5050 --auth my_secret_token_123 --sandbox ~/sandbox --log server.log
+
+
+Expected output:
+
+[INFO] Sandbox directory: /Users/yourname/sandbox
+[INFO] Server listening on 0.0.0.0:5050. Waiting for clients...
+
+💻 Run the Client
+Example (Python client)
+cd cstop-client
+python3 client.py --host 127.0.0.1 --port 5050 --auth my_secret_token_123
+
+
+You can now type safe commands (like ls, pwd, echo hello)
+and the server will execute them inside the sandbox folder.
+
+⚙️ Command Line Options
+Server
+Option	Description	Example
+--port	Port number	--port 5050
+--auth	Authentication token	--auth my_secret_token_123
+--sandbox	Path to sandbox directory	--sandbox ~/sandbox
+--log	Log file path	--log server.log
+Client
+Option	Description	Example
+--host	Server address	--host 127.0.0.1
+--port	Server port	--port 5050
+--auth	Authentication token	--auth my_secret_token_123
+🧠 Security Notes
+
+Do NOT run this server outside a sandbox environment.
+
+Use strong authentication tokens to prevent unauthorized access.
+
+Avoid running privileged or destructive commands.
+
+🧰 Future Improvements
+
+Add encrypted communication (SSL/TLS)
+
+Add file upload/download support
+
+Create a web-based dashboard
+
+Add Docker sandbox support
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
