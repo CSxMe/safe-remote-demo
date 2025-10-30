@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-    SimpleClient client("127.0.0.1", 5000, "my_secret_token_123");
+    SimpleClient client("YourIp", 5050, "my_secret_token_123");
     if (!client.connectAndAuthenticate()) {
         std::cerr << "Cannot connect or authenticate. Exiting.\n";
         return 1;

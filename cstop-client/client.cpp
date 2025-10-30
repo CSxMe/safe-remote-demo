@@ -5,7 +5,7 @@
 
 #pragma comment(lib, "Ws2_32.lib")
 
-// ---------- ????? SimpleClient ----------
+// ---------- exe SimpleClient ----------
 SimpleClient::SimpleClient(const std::string& serverIp, int serverPort, const std::string& authToken)
     : m_serverIp(serverIp), m_serverPort(serverPort), m_authToken(authToken),
     m_socket(INVALID_SOCKET), m_connected(false)
@@ -20,11 +20,9 @@ bool SimpleClient::isConnected() const {
     return m_connected;
 }
 
-// ???? ??? ??????? (int 4 ????) ?? ???????? ????? (?????? ?? partial sends)
 bool SimpleClient::sendStr(const std::string& msg) {
     if (!m_connected) return false;
     int len = static_cast<int>(msg.size());
-    // ???? ??? ??????? ?????
     int sent = send(m_socket, reinterpret_cast<const char*>(&len), sizeof(len), 0);
     if (sent != sizeof(len)) return false;
 
@@ -38,7 +36,6 @@ bool SimpleClient::sendStr(const std::string& msg) {
     return true;
 }
 
-// ?????? ??? ??????? ????? ?? ???? ????? ??????? ?? ????????
 std::string SimpleClient::recvStr() {
     if (!m_connected) return std::string();
     int len = 0;
@@ -85,14 +82,12 @@ bool SimpleClient::connectAndAuthenticate() {
 
     m_connected = true;
 
-    // ???? ?????? ????????
     if (!sendStr(m_authToken)) {
         std::cerr << "Failed to send auth token\n";
         closeConnection();
         return false;
     }
 
-    // ????? ?? ??????? (????? "AUTH_OK")
     std::string resp = recvStr();
     if (resp != "AUTH_OK") {
         std::cerr << "Authentication failed: " << resp << "\n";
@@ -112,7 +107,6 @@ std::string SimpleClient::sendCommandAndGetResponse(const std::string& command) 
     }
     std::string res = recvStr();
     if (res.empty()) {
-        // ????? ??? ?? ?????
         closeConnection();
     }
     return res;
@@ -126,4 +120,4 @@ void SimpleClient::closeConnection() {
     if (m_connected) m_connected = false;
     WSACleanup();
 }
-// ---------- ????? ????? SimpleClient ----------
+// ---------- end exe =  SimpleClient ----------
