@@ -25,7 +25,7 @@ safe-remote-demo/cstop-client/cstop-client.sln # C# client solution (optional)
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/safe-remote-demo.git
+git clone https://github.com/CSxMe/safe-remote-demo.git
 cd safe-remote-demo
 
 
