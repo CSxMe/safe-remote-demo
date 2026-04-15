@@ -1,29 +1,29 @@
-# 🛡️ Safe Remote Demo
+#  Safe Remote Demo
 
 A lightweight and secure **remote command execution system** built with Python.  
 It includes a **server** that listens for authenticated clients and a **client** that sends commands safely to be executed inside a sandboxed environment.
 
 ---
 
-## 🚀 Features
+##  Features
 
-- 🔐 **Authentication Token** — only trusted clients can connect.  
-- 🧱 **Sandboxed Execution** — commands are executed in a restricted folder.  
-- 🧾 **Logging System** — all actions are logged to `server.log`.  
-- ⚡ **Multi-client Support** — multiple clients can connect at once.  
-- 💻 **Cross-platform** — works on macOS, Linux, and Windows.
+-  **Authentication Token** — only trusted clients can connect.  
+-  **Sandboxed Execution** — commands are executed in a restricted folder.  
+-  **Logging System** — all actions are logged to `server.log`.  
+-  **Multi-client Support** — multiple clients can connect at once.  
+-  **Cross-platform** — works on macOS, Linux, and Windows.
 
 ---
 
-## 🗂️ Project Structure
+##  Project Structure
 safe-remote-demo/ server/server.py
 safe-remote-demo/cstop-client/cstop-client.sln # C# client solution (optional)
 
 ---
 
-## ⚙️ Installation & Setup
+##  Installation & Setup
 
-### 1️⃣ Clone the Repository
+###  Clone the Repository
 ```bash
 git clone https://github.com/CSxMe/safe-remote-demo.git
 cd safe-remote-demo
